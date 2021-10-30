@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
+    <link href="./home.css" rel="stylesheet" />
+
+    <script>
+        function calculateshort() {
+            var gross = document.getElementById("Employment_Gross").value;
+            var cpf = document.getElementById("Less_CPF_Contribution").value;
+            var other = document.getElementById("add_any_other_income").value;
+
+            var gross1 = gross === "" ? 0 : parseInt(gross);
+            var cpf1 = cpf === "" ? 0 : parseInt(cpf);
+            var other1 = other === "" ? 0 : parseInt(other);
+
+            var totalIncome = gross1 - cpf1 + other1;
+
+            var insurance = parseInt(document.getElementById("insurance_premium_savings").value !== "" ? document.getElementById("insurance_premium_savings").value : 0);
+            var parental = parseInt(document.getElementById("parental_nafkah_support").value !== "" ? document.getElementById("parental_nafkah_support").value : 0);
+            var housing = parseInt(document.getElementById('housing_loan_installments').value !== "" ? document.getElementById('housing_loan_installments').value : 0);
+            var otherLoan = parseInt(document.getElementById('other_loan_installments').value !== "" ? document.getElementById('other_loan_installments').value : 0);
+            var other = parseInt(document.getElementById('other_fixed_expenses').value !== "" ? document.getElementById('other_fixed_expenses').value : 0);
+            var transportation = parseInt(document.getElementById('transportation').value !== "" ? document.getElementById('transportation').value : 0);
+            var entertainment = parseInt(document.getElementById('entertainment').value !== "" ? document.getElementById('entertainment').value : 0);
+            var food = parseInt(document.getElementById('food').value !== "" ? document.getElementById('food').value : 0);
+            var miscellaneous = parseInt(document.getElementById('miscellaneous').value !== "" ? document.getElementById('miscellaneous').value : 0);
+
+            var totalExpense = insurance + parental + housing + otherLoan + other + transportation + entertainment + food + miscellaneous;
+
+            var finalIncome = totalIncome - totalExpense;
+            document.getElementById('shortfall').innerText = finalIncome;
+        }
+        function calculateincome() {
+            var gross = document.getElementById("Employment_Gross").value;
+            var cpf = document.getElementById("Less_CPF_Contribution").value;
+            var other = document.getElementById("add_any_other_income").value;
+
+            var gross1 = gross === "" ? 0 : parseInt(gross);
+            var cpf1 = cpf === "" ? 0 : parseInt(cpf);
+            var other1 = other === "" ? 0 : parseInt(other);
+
+            var total = gross1 - cpf1 + other1;
+            document.getElementById("total-income").innerText = total;
+            calculateshort();
+        }
+        function calculateexpense() {
+            var insurance = parseInt(document.getElementById("insurance_premium_savings").value !== "" ? document.getElementById("insurance_premium_savings").value : 0);
+            var parental = parseInt(document.getElementById("parental_nafkah_support").value !== "" ? document.getElementById("parental_nafkah_support").value : 0);
+            var housing = parseInt(document.getElementById('housing_loan_installments').value !== "" ? document.getElementById('housing_loan_installments').value : 0);
+            var otherLoan = parseInt(document.getElementById('other_loan_installments').value !== "" ? document.getElementById('other_loan_installments').value : 0);
+            var other = parseInt(document.getElementById('other_fixed_expenses').value !== "" ? document.getElementById('other_fixed_expenses').value : 0);
+            var transportation = parseInt(document.getElementById('transportation').value !== "" ? document.getElementById('transportation').value : 0);
+            var entertainment = parseInt(document.getElementById('entertainment').value !== "" ? document.getElementById('entertainment').value : 0);
+            var food = parseInt(document.getElementById('food').value !== "" ? document.getElementById('food').value : 0);
+            var miscellaneous = parseInt(document.getElementById('miscellaneous').value !== "" ? document.getElementById('miscellaneous').value : 0);
+
+            var total = insurance + parental + housing + otherLoan + other + transportation + entertainment + food + miscellaneous;
+            document.getElementById("total-expense").innerText = total;
+            calculateshort();
+        }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white px-5 shadow">
+        <a class="navbar-brand" style="width: 300px" href="#"><img
+                src="https://vipapp.halalfinancialplan.sg/static/media/logo-color.10cb3db0.png" class="w-100"
+                width="300px" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link text-orange" href="#"><svg stroke="currentColor" fill="currentColor"
+                            stroke-width="0" viewBox="0 0 512 512" class="headerfaphone" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path transform="scale (-1, 1)" transform-origin="center"
+                                d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z">
+                            </path>
+                        </svg>
+                        <span class="ml-1">Contact</span></span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="bg-light h-100 mt-5">
+        <div class="" style="width: 95vw;">
+            <div class="row d-flex flex-row justify-content-between">
+                <div class="my-5" style="width: 80%;">
+                    <div class="bg-white py-4">
+                        <form action="/page_4" method="post">
+                            <div class="head py-2">
+                                <h3 class="mb-3 text-center">
+                                    To help you create your personalised cashflow statement, and
+                                    calculate your financial ratios, help me fill this up
+                                </h3>
+                            </div>
+                            <div class="section py-4 mb-4">
+                                <div class="d-flex flex-column mx-4">
+                                    <div class="d-flex flex-row justify-content-between py-3 px-4 align-items-center"
+                                        style="border-radius: 15px; background-color: #f07722" , }}>
+                                        <div></div>
+                                        <div>
+                                            <p class="font-weight-bold fs-24 mb-0">
+                                                Meet Helmi Hakim Directly
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-2x fa-info-circle ttooltip" data-toggle="tooltip"
+                                                data-html="true"
+                                                data-title="I would like to proceed directly<br />to meet Helmi Hakim for<br />'Understand Your Money' session"
+                                                data-template='<div class="tooltip" role="tooltip"><div class="arrow"></div><div class="tooltip-inner" style="background-color: #BE6464; color: white;"></div></div>'></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-column my-5">
+                                        <div style="background-color: #f07722" class="mb-3">
+                                            <p class="text-center font-weight-bold fs-20 mb-0">
+                                                Cash Inflow
+                                            </p>
+                                        </div>
+                                        <div class="d-flex flex-row justify-content-between mx-auto my-2 align-items-center"
+                                            style="width: 65%">
+                                            <div>
+                                                <p class="mb-0 fs-18">Employment Gross</p>
+                                            </div>
+                                            <div style="width: 350px">
+                                                <input type="text" class="form-control cash-input"
+                                                    name="Employment_Gross" id="Employment_Gross"
+                                                    onchange="calculateincome();" />
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row justify-content-between mx-auto my-2 align-items-center"
+                                            style="width: 65%">
+                                            <div>
+                                                <p class="mb-0 fs-18">Less CPF Contribution</p>
+                                            </div>
+                                            <div style="width: 350px">
+                                                <input type="text" class="form-control cash-input"
+                                                    name="Less_CPF_Contribution" id="Less_CPF_Contribution"
+                                                    onchange="calculateincome();" />
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row justify-content-between mx-auto my-2 align-items-center"
+                                            style="width: 65%">
+                                            <div>
+                                                <p class="mb-0 fs-18">Add any other income</p>
+                                            </div>
+                                            <div style="width: 350px">
+                                                <input type="text" class="form-control cash-input"
+                                                    name="add_any_other_income" id="add_any_other_income"
+                                                    onchange="calculateincome();" />
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row justify-content-between mx-auto my-2 align-items-center"
+                                            style="width: 65%">
+                                            <div>
+                                                <p class="mb-0 fs-18">Total Monthly Income</p>
+                                            </div>
+                                            <div style="width: 350px">
+                                                <p id="total-income" class="mb-0 fs-20 text-center">0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-column my-5">
+                                        <div style="background-color: #f07722" class="mb-2">
+                                            <p class="text-center font-weight-bold fs-20 mb-0">
+                                                Cash Outflow
+                                            </p>
+                                        </div>
+                                        <div style="width: 65%; background-color: #ffd6b2;" class="my-3 mx-auto">
+                                            <p class="text-center font-weight-bold fs-24 mb-0">
+                                                Fixed Expenses
+                                            </p>
+                                        </div>
+
+                                        <div class="d-flex flex-row justify-content-between mx-auto my-2 align-items-center"
+                                            style="width: 65%">
+                                            <div>
+                                                <p class="mb-0 fs-18">Insurance Premium/savings</p>
+                                            </div>
+                                            <div style="width: 350px">
+                                                <input type="text" class="form-control cash-input"
+                                                    onchange="calculateexpense();" name="insurance_premium_savings"
+                                                    id="insurance_premium_savings" />
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row justify-content-between mx-auto my-2 align-items-center"
+                                            style="width: 65%">
+                                            <div>
+                                                <p class="mb-0 fs-18">Parental/Nafkah Support</p>
+                                            </div>
+                                            <div style="width: 350px">
+                                                <input type="text" class="form-control cash-input"
+                                                    onchange="calculateexpense();" name="parental_nafkah_support"
+                                                    id="parental_nafkah_support" />
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row justify-content-between mx-auto my-2 align-items-center"
+                                            style="width: 65%">
+                                            <div>
+                                                <p class="mb-0 fs-18 text-left">
+                                                    Housing Loan Instalments (Cash Portion)
+                                                </p>
+                                            </div>
+                                            <div style="min-width: 350px">
+                                                <input type="text" class="form-control cash-input"
+                                                    onchange="calculateexpense();" name="housing_loan_installments"
+                                                    id="housing_loan_installments" />
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row justify-content-between mx-auto my-2 align-items-center"
+                                            style="width: 65%">
+                                            <div>
+                                                <p class="mb-0 fs-18">Other Loan Instalments</p>
+                                            </div>
+                                            <div style="width: 350px">
+                                                <input type="text" class="form-control cash-input"
+                                                    onchange="calculateexpense();" name="other_loan_installments"
+                                                    id="other_loan_installments" />
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row justify-content-between mx-auto my-2 align-items-center"
+                                            style="width: 65%">
+                                            <div>
+                                                <p class="mb-0 fs-18">Others</p>
+                                            </div>
+                                            <div style="width: 350px">
+                                                <input type="text" class="form-control cash-input"
+                                                    onchange="calculateexpense();" name="other_fixed_expenses"
+                                                    id="other_fixed_expenses" />
+                                            </div>
+                                        </div>
+
+                                        <div style="width: 65%; background-color: #ffd6b2;" class="my-3 mx-auto">
+                                            <p class="text-center font-weight-bold fs-24 mb-0">
+                                                Discretionary Expenses
+                                            </p>
+                                        </div>
+
+                                        <div class="d-flex flex-row justify-content-between mx-auto my-2 align-items-center"
+                                            style="width: 65%">
+                                            <div>
+                                                <p class="mb-0 fs-18">Transportation</p>
+                                            </div>
+                                            <div style="width: 350px">
+                                                <input type="text" class="form-control cash-input"
+                                                    onchange="calculateexpense();" name="transportation"
+                                                    id="transportation" />
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row justify-content-between mx-auto my-2 align-items-center"
+                                            style="width: 65%">
+                                            <div>
+                                                <p class="mb-0 fs-18">Entertainment</p>
+                                            </div>
+                                            <div style="width: 350px">
+                                                <input type="text" class="form-control cash-input"
+                                                    onchange="calculateexpense();" name="entertainment"
+                                                    id="entertainment" />
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row justify-content-between mx-auto my-2 align-items-center"
+                                            style="width: 65%">
+                                            <div>
+                                                <p class="mb-0 fs-18">Food</p>
+                                            </div>
+                                            <div style="width: 350px">
+                                                <input type="text" class="form-control cash-input"
+                                                    onchange="calculateexpense();" name="food" id="food" />
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row justify-content-between mx-auto my-2 align-items-center"
+                                            style="width: 65%">
+                                            <div>
+                                                <p class="mb-0 fs-18">Miscellaneous</p>
+                                            </div>
+                                            <div style="width: 350px">
+                                                <input type="text" class="form-control cash-input"
+                                                    onchange="calculateexpense();" name="miscellaneous"
+                                                    id="miscellaneous" />
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row justify-content-between mx-auto my-2 align-items-center"
+                                            style="width: 65%; background-color: #ffd6b2;">
+                                            <div>
+                                                <p class="mb-0 fs-18">Total Monthly Expenses</p>
+                                            </div>
+                                            <div style="width: 350px">
+                                                <p id="total-expense" class="mb-0 fs-20 text-center">0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-column my-5">
+                                        <div style="background-color: #f07722" class="mb-2">
+                                            <p class="text-center font-weight-bold fs-20 mb-0">
+                                                Cash Inflow
+                                            </p>
+                                        </div>
+                                        <div class="d-flex flex-row justify-content-between mx-auto my-2 align-items-center"
+                                            style="width: 65%">
+                                            <div>
+                                                <p class="mb-0 fs-18">Shortfall/Surplus</p>
+                                            </div>
+                                            <div style="width: 350px">
+                                                <p id="shortfall" class="mb-0 fs-20 text-center">0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn text-white w-25"
+                                    style="border-radius: 30px; font-size: 26px; background-color: #f07722;"
+                                    type="submit">
+                                    Next
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+
+
+
+                </div>
+
+                <!--Tracker-->
+                <div class="my-5" style="width: 19%">
+                    <div class="bg-white py-4 px-3">
+                        <div class="" style="background-color: #ffd6b2">
+                            <div class="d-flex flex-column mx-3">
+                                <div class="d-flex flex-row justify-content-between align-items-center my-2">
+                                    <i class="fas fa-check-circle fs-18"></i>
+                                    <p class="mb-0 fs-18">My Journey</p>
+                                </div>
+                                <div class="d-flex flex-row justify-content-between align-items-center my-2">
+                                    <i class="fas fa-check-circle fs-18"></i>
+                                    <p class="mb-0 fs-18">Name</p>
+                                </div>
+                                <div class="d-flex flex-row justify-content-between align-items-center my-2">
+                                    <i class="fas fa-check-circle fs-18"></i>
+                                    <p class="mb-0 fs-18">Age</p>
+                                </div>
+                                <div class="d-flex flex-row justify-content-between align-items-center my-2">
+                                    <i class="fas fa-check-circle fs-18"></i>
+                                    <p class="mb-0 fs-18">Cashflow</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- <script src="/tdk/scripts/jquery.min.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="/tdk/scripts/bootstrap.js" type="text/javascript"></script>
+        <script src="/tdk/scripts/jquery.dataTables.js" type="text/javascript"></script>
+        <script src="/tdk/scripts/dataTables.bootstrap.js" type="text/javascript"></script> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
+    <script>
+        $(document).ready(function () {
+            $(function () {
+                $('.ttooltip').tooltip()
+            });
+        });
+    </script>
+</body>
+
+</html>

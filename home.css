@@ -1,0 +1,69 @@
+.text-orange {
+  color: orange !important;
+}
+
+.bg-orange {
+  background-color: orange !important;
+}
+
+.fs-20 {
+  font-size: 20px !important;
+}
+
+.fs-18 {
+  font-size: 18px !important;
+}
+
+.fs-24 {
+  font-size: 24px !important;
+}
+
+.fs-22 {
+  font-size: 22px !important;
+}
+
+.form-control:focus,
+.form-control:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.name-input {
+  border-radius: 15px;
+  font-size: 30px;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  background-color: #f5f1ed;
+}
+
+.age-input {
+  border-radius: 15px;
+  border-width: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  background-color: #f5f1ed;
+}
+
+.cash-input {
+  border-radius: 15px;
+  font-size: 20px;
+  text-align: center;
+  background-color: #f5f1ed;
+}
+
+.submit-input {
+  border-radius: 10px;
+  font-size: 16px;
+  text-align: center;
+  background-color: #f5f1ed;
+  font-style: italic;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
