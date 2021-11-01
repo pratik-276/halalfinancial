@@ -11,59 +11,61 @@
     <link href="./home.css" rel="stylesheet" />
 
     <script>
-        function calculateshort() {
-            var gross = document.getElementById("Employment_Gross").value;
-            var cpf = document.getElementById("Less_CPF_Contribution").value;
-            var other = document.getElementById("add_any_other_income").value;
+        function calculate(){
+            const values = $("#form1").serializeArray();
 
-            var gross1 = gross === "" ? 0 : parseInt(gross);
-            var cpf1 = cpf === "" ? 0 : parseInt(cpf);
-            var other1 = other === "" ? 0 : parseInt(other);
+            var total = 0;
+            for(var i=0; i<2; i++){
+                total += values[i].value === ""? 0 :  parseInt(values[i].value);
+            }
+            document.getElementById("total_cash").innerText = total;
 
-            var totalIncome = gross1 - cpf1 + other1;
+            total = 0;
+            for(var i=2; i<8; i++){
+                total += values[i].value === ""? 0 :  parseInt(values[i].value);
+            }
+            document.getElementById("total_invested_assets").innerText = total;
 
-            var insurance = parseInt(document.getElementById("insurance_premium_savings").value !== "" ? document.getElementById("insurance_premium_savings").value : 0);
-            var parental = parseInt(document.getElementById("parental_nafkah_support").value !== "" ? document.getElementById("parental_nafkah_support").value : 0);
-            var housing = parseInt(document.getElementById('housing_loan_installments').value !== "" ? document.getElementById('housing_loan_installments').value : 0);
-            var otherLoan = parseInt(document.getElementById('other_loan_installments').value !== "" ? document.getElementById('other_loan_installments').value : 0);
-            var other = parseInt(document.getElementById('other_fixed_expenses').value !== "" ? document.getElementById('other_fixed_expenses').value : 0);
-            var transportation = parseInt(document.getElementById('transportation').value !== "" ? document.getElementById('transportation').value : 0);
-            var entertainment = parseInt(document.getElementById('entertainment').value !== "" ? document.getElementById('entertainment').value : 0);
-            var food = parseInt(document.getElementById('food').value !== "" ? document.getElementById('food').value : 0);
-            var miscellaneous = parseInt(document.getElementById('miscellaneous').value !== "" ? document.getElementById('miscellaneous').value : 0);
+            total = 0;
+            for(var i=8; i<10; i++){
+                total += values[i].value === ""? 0 :  parseInt(values[i].value);
+            }
+            document.getElementById("total_personal_use_assets").innerText = total;
 
-            var totalExpense = insurance + parental + housing + otherLoan + other + transportation + entertainment + food + miscellaneous;
+            total = 0;
+            for(var i=8; i<10; i++){
+                total += values[i].value === ""? 0 :  parseInt(values[i].value);
+            }
+            document.getElementById("total_personal_use_assets").innerText = total;
 
-            var finalIncome = totalIncome - totalExpense;
-            document.getElementById('shortfall').innerText = finalIncome;
-        }
-        function calculateincome() {
-            var gross = document.getElementById("Employment_Gross").value;
-            var cpf = document.getElementById("Less_CPF_Contribution").value;
-            var other = document.getElementById("add_any_other_income").value;
+            var totalAsset = 0;
+            for(var i=0; i<10; i++){
+                totalAsset += values[i].value === ""? 0 :  parseInt(values[i].value);
+            }
+            document.getElementById("total_assets").innerText = totalAsset;
 
-            var gross1 = gross === "" ? 0 : parseInt(gross);
-            var cpf1 = cpf === "" ? 0 : parseInt(cpf);
-            var other1 = other === "" ? 0 : parseInt(other);
+            total = 0;
+            for(var i=10; i<12; i++){
+                total += values[i].value === ""? 0 :  parseInt(values[i].value);
+            }
+            document.getElementById("total_current_liabilities").innerText = total;
 
-            var total = gross1 - cpf1 + other1;
-            document.getElementById("total-income").innerText = total;
-            calculateshort();
-        }
-        function calculateexpense() {
-            var insurance = parseInt(document.getElementById("insurance_premium_savings").value !== "" ? document.getElementById("insurance_premium_savings").value : 0);
-            var parental = parseInt(document.getElementById("parental_nafkah_support").value !== "" ? document.getElementById("parental_nafkah_support").value : 0);
-            var housing = parseInt(document.getElementById('housing_loan_installments').value !== "" ? document.getElementById('housing_loan_installments').value : 0);
-            var otherLoan = parseInt(document.getElementById('other_loan_installments').value !== "" ? document.getElementById('other_loan_installments').value : 0);
-            var other = parseInt(document.getElementById('other_fixed_expenses').value !== "" ? document.getElementById('other_fixed_expenses').value : 0);
-            var transportation = parseInt(document.getElementById('transportation').value !== "" ? document.getElementById('transportation').value : 0);
-            var entertainment = parseInt(document.getElementById('entertainment').value !== "" ? document.getElementById('entertainment').value : 0);
-            var food = parseInt(document.getElementById('food').value !== "" ? document.getElementById('food').value : 0);
-            var miscellaneous = parseInt(document.getElementById('miscellaneous').value !== "" ? document.getElementById('miscellaneous').value : 0);
+            var total = 0;
+            for(var i=12; i<15; i++){
+                total += values[i].value === ""? 0 :  parseInt(values[i].value);
+            }
+            document.getElementById("total_long_term_liabilities").innerText = total;
 
-            var total = insurance + parental + housing + otherLoan + other + transportation + entertainment + food + miscellaneous;
-            document.getElementById("total-expense").innerText = total;
-            calculateshort();
+            var totalLiabilities = 0;
+            for(var i=10; i<15; i++){
+                totalLiabilities += values[i].value === ""? 0 :  parseInt(values[i].value);
+            }
+            document.getElementById("total_liabilities").innerText = totalLiabilities;
+
+            var netWorth = totalAsset - totalLiabilities;
+            document.getElementById("net_worth").innerText = netWorth;
+
+            document.getElementById("total_liabilities_and_worth").innerText = totalAsset;
         }
     </script>
 </head>
@@ -98,7 +100,7 @@
             <div class="row d-flex flex-row justify-content-between">
                 <div class="my-5" style="width: 80%;">
                     <div class="bg-white py-4">
-                        <form action="/page_5" method="post">
+                        <form action="/page_5" method="post" id="form1">
                             <div class="section py-4 mb-4">
                                 <div class="d-flex flex-column mx-4">
                                     <div class="d-flex flex-row justify-content-between py-3 px-4 align-items-center"
@@ -139,14 +141,14 @@
                                             <div class="d-flex flex-row justify-content-between px-4 align-items-center my-2">
                                                 <p class="mb-0">Cash / Bank Deposits</p>
                                                 <div style="min-width: 110px; width: 110px;">
-                                                    <input type="text" class="form-control submit-input" name="cash_bank_deposit" id="cash_bank_deposit" />
+                                                    <input type="text" class="form-control submit-input" name="cash_bank_deposit" id="cash_bank_deposit" onchange="calculate();" />
                                                 </div>
                                             </div>
 
                                             <div class="d-flex flex-row justify-content-between px-4 align-items-center my-2">
                                                 <p class="mb-0">Others</p>
                                                 <div style="min-width: 110px; width: 110px;">
-                                                    <input type="text" class="form-control submit-input" name="other_cash_assets" id="other_cash_assets" />
+                                                    <input type="text" class="form-control submit-input" name="other_cash_assets" id="other_cash_assets" onchange="calculate();" />
                                                 </div>
                                             </div>
 
@@ -177,42 +179,42 @@
                                             <div class="d-flex flex-row justify-content-between px-4 align-items-center my-2">
                                                 <p class="mb-0">CPF Ordinary Account</p>
                                                 <div style="min-width: 110px; width: 110px;">
-                                                    <input type="text" class="form-control submit-input" name="CPF_ordinary_account" id="CPF_ordinary_account" />
+                                                    <input type="text" class="form-control submit-input" name="CPF_ordinary_account" id="CPF_ordinary_account" onchange="calculate();" />
                                                 </div>
                                             </div>
 
                                             <div class="d-flex flex-row justify-content-between px-4 align-items-center my-2">
                                                 <p class="mb-0">CPF Special Account</p>
                                                 <div style="min-width: 110px; width: 110px;">
-                                                    <input type="text" class="form-control submit-input" name="CPF_special_account" id="CPF_special_account" />
+                                                    <input type="text" class="form-control submit-input" name="CPF_special_account" id="CPF_special_account" onchange="calculate();" />
                                                 </div>
                                             </div>
 
                                             <div class="d-flex flex-row justify-content-between px-4 align-items-center my-2">
                                                 <p class="mb-0">CPF Medisave Account</p>
                                                 <div style="min-width: 110px; width: 110px;">
-                                                    <input type="text" class="form-control submit-input" name="CPF_Medisave_account" id="CPF_Medisave_account" />
+                                                    <input type="text" class="form-control submit-input" name="CPF_Medisave_account" id="CPF_Medisave_account" onchange="calculate();" />
                                                 </div>
                                             </div>
 
                                             <div class="d-flex flex-row justify-content-between px-4 align-items-center my-2">
                                                 <p class="mb-0">Investment(e.g. Shares, Sukuk, Unit Trusts, ILP)</p>
                                                 <div style="min-width: 110px; width: 110px;">
-                                                    <input type="text" class="form-control submit-input" name="investment_shares_etc" id="investment_shares_etc" />
+                                                    <input type="text" class="form-control submit-input" name="investment_shares_etc" id="investment_shares_etc" onchange="calculate();" />
                                                 </div>
                                             </div>
 
                                             <div class="d-flex flex-row justify-content-between px-4 align-items-center my-2">
                                                 <p class="mb-0">Insurance Cash Value(e.g. traditional policies)</p>
                                                 <div style="min-width: 110px; width: 110px;">
-                                                    <input type="text" class="form-control submit-input" name="insurances_cash_value" id="insurances_cash_value" />
+                                                    <input type="text" class="form-control submit-input" name="insurances_cash_value" id="insurances_cash_value" onchange="calculate();" />
                                                 </div>
                                             </div>
 
                                             <div class="d-flex flex-row justify-content-between px-4 align-items-center my-2">
                                                 <p class="mb-0">Others</p>
                                                 <div style="min-width: 110px; width: 110px;">
-                                                    <input type="text" class="form-control submit-input" name="other_invested_assets" id="other_invested_assets" />
+                                                    <input type="text" class="form-control submit-input" name="other_invested_assets" id="other_invested_assets" onchange="calculate();" />
                                                 </div>
                                             </div>
 
@@ -243,14 +245,14 @@
                                             <div class="d-flex flex-row justify-content-between px-4 align-items-center my-2">
                                                 <p class="mb-0">Family Home</p>
                                                 <div style="min-width: 110px; width: 110px;">
-                                                    <input type="text" class="form-control submit-input" name="family_home" id="family_home" />
+                                                    <input type="text" class="form-control submit-input" name="family_home" id="family_home" onchange="calculate();" />
                                                 </div>
                                             </div>
 
                                             <div class="d-flex flex-row justify-content-between px-4 align-items-center my-2">
                                                 <p class="mb-0">Motor Vehicles</p>
                                                 <div style="min-width: 110px; width: 110px;">
-                                                    <input type="text" class="form-control submit-input" name="motor_vehicles" id="motor_vehicles" />
+                                                    <input type="text" class="form-control submit-input" name="motor_vehicles" id="motor_vehicles" onchange="calculate();" />
                                                 </div>
                                             </div>
 
@@ -291,14 +293,14 @@
                                             <div class="d-flex flex-row justify-content-between px-4 align-items-center my-2">
                                                 <p class="mb-0">Credit Card Balances</p>
                                                 <div style="min-width: 110px; width: 110px;">
-                                                    <input type="text" class="form-control submit-input" name="credit_card_balances" id="credit_card_balances" />
+                                                    <input type="text" class="form-control submit-input" name="credit_card_balances" id="credit_card_balances" onchange="calculate();" />
                                                 </div>
                                             </div>
 
                                             <div class="d-flex flex-row justify-content-between px-4 align-items-center my-2">
                                                 <p class="mb-0">Others</p>
                                                 <div style="min-width: 110px; width: 110px;">
-                                                    <input type="text" class="form-control submit-input" name="other_current_liabilities" id="other_current_liabilities" />
+                                                    <input type="text" class="form-control submit-input" name="other_current_liabilities" id="other_current_liabilities" onchange="calculate();" />
                                                 </div>
                                             </div>
 
@@ -329,21 +331,21 @@
                                             <div class="d-flex flex-row justify-content-between px-4 align-items-center my-2">
                                                 <p class="mb-0">Car Hire Purchase</p>
                                                 <div style="min-width: 110px; width: 110px;">
-                                                    <input type="text" class="form-control submit-input" name="car_hire_purchase" id="car_hire_purchase" />
+                                                    <input type="text" class="form-control submit-input" name="car_hire_purchase" id="car_hire_purchase" onchange="calculate();" />
                                                 </div>
                                             </div>
 
                                             <div class="d-flex flex-row justify-content-between px-4 align-items-center my-2">
                                                 <p class="mb-0">Mortgage Loan Balance</p>
                                                 <div style="min-width: 110px; width: 110px;">
-                                                    <input type="text" class="form-control submit-input" name="mortgage_loan_balance" id="mortgage_loan_balance" />
+                                                    <input type="text" class="form-control submit-input" name="mortgage_loan_balance" id="mortgage_loan_balance" onchange="calculate();" />
                                                 </div>
                                             </div>
 
                                             <div class="d-flex flex-row justify-content-between px-4 align-items-center my-2">
                                                 <p class="mb-0">Others</p>
                                                 <div style="min-width: 110px; width: 110px;">
-                                                    <input type="text" class="form-control submit-input" name="other_long_term_liabilities" id="other_long_term_liabilities" />
+                                                    <input type="text" class="form-control submit-input" name="other_long_term_liabilities" id="other_long_term_liabilities" onchange="calculate();" />
                                                 </div>
                                             </div>
 
