@@ -13,11 +13,10 @@
     <script>
         function calculateshort() {
             var gross = document.getElementById("Employment_Gross").value;
-            var cpf = document.getElementById("Less_CPF_Contribution").value;
             var other = document.getElementById("add_any_other_income").value;
 
             var gross1 = gross === "" ? 0 : parseInt(gross);
-            var cpf1 = cpf === "" ? 0 : parseInt(cpf);
+            var cpf1 = gross1 * 0.2 > 1200 ? 1200 : gross1 * 0.2;
             var other1 = other === "" ? 0 : parseInt(other);
 
             var totalIncome = gross1 - cpf1 + other1;
@@ -39,15 +38,16 @@
         }
         function calculateincome() {
             var gross = document.getElementById("Employment_Gross").value;
-            var cpf = document.getElementById("Less_CPF_Contribution").value;
+            //var cpf = document.getElementById("Less_CPF_Contribution").value;
             var other = document.getElementById("add_any_other_income").value;
 
             var gross1 = gross === "" ? 0 : parseInt(gross);
-            var cpf1 = cpf === "" ? 0 : parseInt(cpf);
+            var cpf1 = gross1 * 0.2 > 1200 ? 1200 : gross1 * 0.2;
             var other1 = other === "" ? 0 : parseInt(other);
 
             var total = gross1 - cpf1 + other1;
             document.getElementById("total-income").innerText = total;
+            document.getElementById("Less_CPF_Contribution").innerText = cpf1;
             calculateshort();
         }
         function calculateexpense() {
@@ -147,9 +147,10 @@
                                                 <p class="mb-0 fs-18">Less CPF Contribution</p>
                                             </div>
                                             <div style="width: 350px">
-                                                <input type="text" class="form-control cash-input"
+                                                <!-- <input type="text" class="form-control cash-input"
                                                     name="Less_CPF_Contribution" id="Less_CPF_Contribution"
-                                                    onchange="calculateincome();" />
+                                                    onchange="calculateincome();" /> -->
+                                                <p id="Less_CPF_Contribution" class="mb-0 fs-20 text-center">0</p>
                                             </div>
                                         </div>
 
