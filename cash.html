@@ -11,6 +11,34 @@
     <link href="./home.css" rel="stylesheet" />
 
     <script>
+        function textToCommaSep(value){
+            var flag = false;
+            if(value[0] === "-"){
+                value = value.substring(1);
+                flag = true;
+            }
+            var div = parseInt(value / 3);
+            var mod = value % 3;
+            if(mod == 0){
+                div -= 1;
+            }
+            var newValue = "";
+            if(div > 0){
+            var count = 0;
+                for(var i=value.length - 1; i>=0; i--){
+                    if(count !== 0 && count % 3 == 0){
+                        newValue = value[i] + "," + newValue;
+                    }else{
+                        newValue = value[i] + newValue;
+                    }
+                    count++;
+                }
+            }
+            if(flag){
+                return "-"+newValue;
+            }
+            return newValue;
+        }
         function calculateshort(cpf_update) {
             var gross = document.getElementById("Employment_Gross").value.split(',').join('');
             var cpf = document.getElementById("Less_CPF_Contribution").value.split(',').join('');
@@ -39,7 +67,8 @@
             var totalExpense = insurance + parental + housing + otherLoan + other + transportation + entertainment + food + miscellaneous;
 
             var finalIncome = totalIncome - totalExpense;
-            document.getElementById('shortfall').innerText = finalIncome;
+            console.log(finalIncome);
+            document.getElementById('shortfall').innerText = textToCommaSep(finalIncome + "");
         }
         function handleCPFChange() {
             var gross = document.getElementById("Employment_Gross").value.split(',').join('');
@@ -51,8 +80,8 @@
             var other1 = other === "" ? 0 : parseInt(other);
 
             var total = gross1 - cpf1 + other1;
-            document.getElementById("total-income").innerText = total;
-            document.getElementById("Less_CPF_Contribution").value = cpf1;
+            document.getElementById("total-income").innerText = textToCommaSep(total + "");
+            document.getElementById("Less_CPF_Contribution").value = textToCommaSep(cpf1 + "");
             calculateshort(true);
         }
         function calculateincome() {
@@ -65,8 +94,8 @@
             var other1 = other === "" ? 0 : parseInt(other);
 
             var total = gross1 - cpf1 + other1;
-            document.getElementById("total-income").innerText = total;
-            document.getElementById("Less_CPF_Contribution").value = cpf1;
+            document.getElementById("total-income").innerText = textToCommaSep(total + "");
+            document.getElementById("Less_CPF_Contribution").value = textToCommaSep(cpf1 + "");
             calculateshort(false);
         }
         function calculateexpense() {
@@ -81,8 +110,8 @@
             var miscellaneous = parseInt(document.getElementById('miscellaneous').value.split(',').join('') !== "" ? document.getElementById('miscellaneous').value.split(',').join('') : 0);
 
             var total = insurance + parental + housing + otherLoan + other + transportation + entertainment + food + miscellaneous;
-            document.getElementById("total-expense").innerText = total;
-            calculateshort();
+            document.getElementById("total-expense").innerText = textToCommaSep(total + "");
+            calculateshort(true);
         }
     </script>
 </head>

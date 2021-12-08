@@ -11,6 +11,34 @@
     <link href="./home.css" rel="stylesheet" />
 
     <script>
+        function textToCommaSep(value){
+            var flag = false;
+            if(value[0] === "-"){
+                value = value.substring(1);
+                flag = true;
+            }
+            var div = parseInt(value / 3);
+            var mod = value % 3;
+            if(mod == 0){
+                div -= 1;
+            }
+            var newValue = "";
+            if(div > 0){
+            var count = 0;
+                for(var i=value.length - 1; i>=0; i--){
+                    if(count !== 0 && count % 3 == 0){
+                        newValue = value[i] + "," + newValue;
+                    }else{
+                        newValue = value[i] + newValue;
+                    }
+                    count++;
+                }
+            }
+            if(flag){
+                return "-"+newValue;
+            }
+            return newValue;
+        }
         function calculate(){
             const values = $("#form1").serializeArray();
 
@@ -18,54 +46,54 @@
             for(var i=0; i<2; i++){
                 total += values[i].value.split(',').join('') === ""? 0 :  parseInt(values[i].value.split(',').join(''));
             }
-            document.getElementById("total_cash").innerText = total;
+            document.getElementById("total_cash").innerText = textToCommaSep(total + "");
 
             total = 0;
             for(var i=2; i<8; i++){
                 total += values[i].value.split(',').join('') === ""? 0 :  parseInt(values[i].value.split(',').join(''));
             }
-            document.getElementById("total_invested_assets").innerText = total;
+            document.getElementById("total_invested_assets").innerText = textToCommaSep(total + "");
 
             total = 0;
             for(var i=8; i<10; i++){
                 total += values[i].value.split(',').join('') === ""? 0 :  parseInt(values[i].value.split(',').join(''));
             }
-            document.getElementById("total_personal_use_assets").innerText = total;
+            document.getElementById("total_personal_use_assets").innerText = textToCommaSep(total + "");
 
             total = 0;
             for(var i=8; i<10; i++){
                 total += values[i].value.split(',').join('') === ""? 0 :  parseInt(values[i].value.split(',').join(''));
             }
-            document.getElementById("total_personal_use_assets").innerText = total;
+            document.getElementById("total_personal_use_assets").innerText = textToCommaSep(total + "");
 
             var totalAsset = 0;
             for(var i=0; i<10; i++){
                 totalAsset += values[i].value.split(',').join('') === ""? 0 :  parseInt(values[i].value.split(',').join(''));
             }
-            document.getElementById("total_assets").innerText = totalAsset;
+            document.getElementById("total_assets").innerText = textToCommaSep(totalAsset + "");
 
             total = 0;
             for(var i=10; i<12; i++){
                 total += values[i].value.split(',').join('') === ""? 0 :  parseInt(values[i].value.split(',').join(''));
             }
-            document.getElementById("total_current_liabilities").innerText = total;
+            document.getElementById("total_current_liabilities").innerText = textToCommaSep(total + "");
 
             var total = 0;
             for(var i=12; i<15; i++){
                 total += values[i].value.split(',').join('') === ""? 0 :  parseInt(values[i].value.split(',').join(''));
             }
-            document.getElementById("total_long_term_liabilities").innerText = total;
+            document.getElementById("total_long_term_liabilities").innerText = textToCommaSep(total + "");
 
             var totalLiabilities = 0;
             for(var i=10; i<15; i++){
                 totalLiabilities += values[i].value.split(',').join('') === ""? 0 :  parseInt(values[i].value.split(',').join(''));
             }
-            document.getElementById("total_liabilities").innerText = totalLiabilities;
+            document.getElementById("total_liabilities").innerText = textToCommaSep(totalLiabilities + "");
 
             var netWorth = totalAsset - totalLiabilities;
-            document.getElementById("net_worth").innerText = netWorth;
+            document.getElementById("net_worth").innerText = textToCommaSep(netWorth + "");
 
-            document.getElementById("total_liabilities_and_worth").innerText = totalAsset;
+            document.getElementById("total_liabilities_and_worth").innerText = textToCommaSep(totalAsset + "");
         }
     </script>
 </head>
